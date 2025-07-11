@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"></html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    This is user's home page. In this i want to show the list of books available in the library.
+    and also how many books does the user reserved.
+
+    <div th:if="${hasBooks}">
+        <h2>Available Books</h2>
+        <ul>
+            <li th:each="book : ${books}" th:text="${book.title}">Book Title</li>
+        </ul>
+    </div>
+    <div th:if="${hasReservedBooks}">
+        <h2>Reserved Books</h2>
+        <ul>
+            <li th:each="book : ${reservedBooks}" th:text="${book.title}">Reserved Book Title</li>
+        </ul>
+    </div>
+    <div th:if="${!hasBooks and !hasReservedBooks}">
+        <p>No books available or reserved.</p>
+    </div>
+
+    <h2>Search for Books</h2>
+    <p>Search for books by name:</p>
+   <!-- search for books: By name.  -->
+<div>
+    <form th:action="@{search}" method="get">
+    <input type="text" name="query" placeholder="Search for books..." required>
+    <button type="submit">Search</button>
+</form>
+
+    
+</body>
+</html>

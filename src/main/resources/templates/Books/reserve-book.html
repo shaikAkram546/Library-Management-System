@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Reserve Book</title>
+</head>
+<body>
+    <h1>Reserve a Book</h1>
+
+    <form id="reserveForm" method="post">
+        <label for="bookId">Enter Book ID:</label>
+        <input type="number" id="bookId" name="bookId" required />
+
+        <button type="submit">Reserve</button>
+    </form>
+
+    <script>
+        // On submit, redirect the form to /user/reserve/{bookId}
+        document.getElementById('reserveForm').onsubmit = function(e) {
+            e.preventDefault();
+            var bookId = document.getElementById('bookId').value;
+            this.action = '/user/reserve/' + bookId;
+            this.submit();
+        };
+    </script>
+</body>
+</html>
